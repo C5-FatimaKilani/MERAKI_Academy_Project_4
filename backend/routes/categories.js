@@ -1,12 +1,21 @@
 const express = require("express");
 
-// Import articles categories
-const {createCategory} = require("../controllers/categories");
+// Import categories controllers
+const {
+  createCategory,
+  getAllCategories,
+} = require("../controllers/categories");
+
+
+// Middleware
+const authentication = require("../middleware/authentication");
+const authorization = require("../middleware/authorization");
 
 // Create categories router
 const categoriesRouter = express.Router();
 
-categoriesRouter.post("/",createCategory)
+categoriesRouter.post("/", createCategory);
 
+categoriesRouter.get("/", authentication , getAllCategories);
 
 module.exports = categoriesRouter;

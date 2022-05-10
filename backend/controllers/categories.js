@@ -24,4 +24,37 @@ const createCategory = (req, res) => {
     });
 };
 
-module.exports = { createCategory };
+const getAllCategories = (req, res) => {
+    console.log("lalalalal" + req.token);
+  const userId = req.token.userId;
+  console.log(req.token.userId);
+  categoriesModel
+    .find({})
+    .then((categories) => {
+      if (categories.length) {
+        res.status(200).json({
+          success: true,
+          message: `All the categories`,
+          userId: userId,
+          categories: categories,
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: `No Categories Yet`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+
+module.exports = {
+  createCategory,
+  getAllCategories,
+};
