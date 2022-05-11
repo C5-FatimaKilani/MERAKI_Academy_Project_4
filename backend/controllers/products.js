@@ -93,8 +93,35 @@ const updateProductById = (req, res) => {
       });
   };
 
+  // This function deletes a specific product by its id
+const deleteProductById = (req, res) => {
+    const id = req.params.id;
+    productsModel
+      .findByIdAndDelete(id)
+      .then((result) => {
+        if (!result) {
+          return res.status(404).json({
+            success: false,
+            message: `The Product: ${id} is not found`,
+          });
+        }
+        res.status(200).json({
+          success: true,
+          message: `Product deleted`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+      });
+  };
+
 module.exports = {
   createProduct,
   getAllProducts,
   updateProductById,
+  deleteProductById
 };
