@@ -33,7 +33,7 @@ const createProduct = (req, res) => {
     });
 };
 
-
+// This function get's All Products
 const getAllProducts = (req, res) => {
     const userId = req.token.userId;
 
@@ -65,7 +65,36 @@ const getAllProducts = (req, res) => {
     });
 };
 
+// This function updates product by its id
+const updateProductById = (req, res) => {
+    const _id = req.params.id;
+  
+    productsModel
+      .findByIdAndUpdate(_id, req.body, { new: true })
+      .then((result) => {
+        if (!result) {
+          return res.status(404).json({
+            success: false,
+            message: `The Product: ${_id} is not found`,
+          });
+        }
+        res.status(202).json({
+          success: true,
+          message: `Product updated`,
+          product: result,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+      });
+  };
+
 module.exports = {
   createProduct,
   getAllProducts,
+  updateProductById,
 };
