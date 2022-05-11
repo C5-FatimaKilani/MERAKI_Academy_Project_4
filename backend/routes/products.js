@@ -32,6 +32,6 @@ productsRouter.post("/:id/comments", authentication, createNewComment);
 
 productsRouter.get("/search_1", getProductByCategory);
 
-productsRouter.get("/search_1", getProductsByTitle);
+productsRouter.get("/search_2", getProductsByTitle);
 
 module.exports = productsRouter;

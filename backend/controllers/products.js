@@ -128,6 +128,7 @@ const deleteProductById = (req, res) => {
     productsModel
       .find({ categoryId: categoryTitle })
       .populate("categoryId" )
+      //deep pop
       .populate({ path: 'comments', populate: { path: 'commenter' }})
       .then((products) => {
         if (!products.length) {
@@ -155,7 +156,7 @@ const deleteProductById = (req, res) => {
 //This function returns articles by author
 const getProductsByTitle = (req, res) => {
     let productId = req.query.product;
-
+console.log(productId);
     productsModel
       .find({ _id: productId })
       .populate("categoryId" )
