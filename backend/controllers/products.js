@@ -154,21 +154,23 @@ const deleteProductById = (req, res) => {
 
 //This function returns articles by author
 const getProductsByTitle = (req, res) => {
-    let productTitle = req.query.title;
-  
-    articlesModel
-      .find({ title: productTitle })
-      .then((products) => {
-        if (!articles.length) {
-          return res.status(404).json({
-            success: false,
-            message: `The author: ${productTitle} has no articles`,
-          });
-        }
+    let productId = req.query.product;
+
+    productsModel
+      .find({ _id: productId })
+      .populate("categoryId" )
+      .populate({ path: 'comments', populate: { path: 'commenter' }})
+      .then((product) => {
+        // if (!products.length) {
+        //   return res.status(404).json({
+        //     success: false,
+        //     message: `The Product: ${productId} has no products`,
+        //   });
+        // }
         res.status(200).json({
           success: true,
-          message: `All the articles for the author: ${productTitle}`,
-          articles: articles,
+          message: `All the products for this Title: ${productId}`,
+          products: product,
         });
       })
       .catch((err) => {
@@ -185,5 +187,6 @@ module.exports = {
   getAllProducts,
   updateProductById,
   deleteProductById,
-  getProductByCategory
+  getProductByCategory,
+  getProductsByTitle
 };

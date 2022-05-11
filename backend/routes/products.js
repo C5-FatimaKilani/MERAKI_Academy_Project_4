@@ -7,6 +7,7 @@ const {
   updateProductById,
   deleteProductById,
   getProductByCategory,
+  getProductsByTitle
 } = require("../controllers/products");
 
 // Import comments controller
@@ -30,5 +31,7 @@ productsRouter.delete("/:id", authentication, deleteProductById);
 productsRouter.post("/:id/comments", authentication, createNewComment);
 
 productsRouter.get("/search_1", getProductByCategory);
+
+productsRouter.get("/search_1", getProductsByTitle);
 
 module.exports = productsRouter;
