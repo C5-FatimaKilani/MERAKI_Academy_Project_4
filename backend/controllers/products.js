@@ -39,7 +39,7 @@ const getAllProducts = (req, res) => {
 
     productsModel
     .find({})
-    // .populate("comments categoryId")
+    .populate("comments categoryId")
     .then((products) => {
       if (products.length) {
         res.status(200).json({
@@ -119,9 +119,71 @@ const deleteProductById = (req, res) => {
       });
   };
 
+
+  //This function returns products by category Name => for filtering
+
+  const getProductByCategory = (req,res) => {
+    let categoryTitle = req.query.category;
+
+    productsModel
+      .find({ categoryId: categoryTitle })
+      .populate("categoryId" )
+      .populate({ path: 'comments', populate: { path: 'commenter' }})
+      .then((products) => {
+        if (!products.length) {
+          return res.status(404).json({
+            success: false,
+            message: `The Category: ${categoryTitle} has no products`,
+          });
+        }
+        res.status(200).json({
+          success: true,
+          message: `All the products for the Category: ${categoryTitle}`,
+          products: products,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+      });
+  } 
+
+
+//This function returns articles by author
+const getProductsByTitle = (req, res) => {
+    let productTitle = req.query.title;
+  
+    articlesModel
+      .find({ title: productTitle })
+      .then((products) => {
+        if (!articles.length) {
+          return res.status(404).json({
+            success: false,
+            message: `The author: ${productTitle} has no articles`,
+          });
+        }
+        res.status(200).json({
+          success: true,
+          message: `All the articles for the author: ${productTitle}`,
+          articles: articles,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+      });
+  };
+
 module.exports = {
   createProduct,
   getAllProducts,
   updateProductById,
-  deleteProductById
+  deleteProductById,
+  getProductByCategory
 };
