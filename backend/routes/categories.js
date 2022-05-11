@@ -6,7 +6,6 @@ const {
   getAllCategories,
 } = require("../controllers/categories");
 
-
 // Middleware
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
@@ -16,6 +15,6 @@ const categoriesRouter = express.Router();
 
 categoriesRouter.post("/", createCategory);
 
-categoriesRouter.get("/", authentication , getAllCategories);
+categoriesRouter.get("/", authentication, getAllCategories);
 
 module.exports = categoriesRouter;

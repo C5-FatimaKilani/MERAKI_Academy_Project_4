@@ -25,7 +25,7 @@ const createCategory = (req, res) => {
 };
 
 const getAllCategories = (req, res) => {
-    console.log("lalalalal" + req.token);
+  console.log("lalalalal" + req.token);
   const userId = req.token.userId;
   console.log(req.token.userId);
   categoriesModel

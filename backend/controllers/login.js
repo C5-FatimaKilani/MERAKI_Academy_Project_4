@@ -2,19 +2,22 @@ const usersModel = require("../models/users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const login = (req,res) => {
-    const password = req.body.password
-    const email = req.body.email.toLowerCase();
+const login = (req, res) => {
+  const password = req.body.password;
+  const email = req.body.email.toLowerCase();
 
-usersModel.findOne({email})
-.then(async(result)=>{
-    if (!result) {//(!result) means not found email
+  usersModel
+    .findOne({ email })
+    .then(async (result) => {
+      if (!result) {
+        //(!result) means not found email
         return res.status(404).json({
           success: false,
           message: `The email doesn't exist`,
         });
       }
-      try {//compare passwords
+      try {
+        //compare passwords
         const valid = await bcrypt.compare(password, result.password);
         if (!valid) {
           return res.status(403).json({
@@ -23,11 +26,10 @@ usersModel.findOne({email})
           });
         }
         const payload = {
-           
           userId: result._id,
           user: result.firstName,
         };
-//  console.log("result here is----"+result);
+        //  console.log("result here is----"+result);
         const options = {
           expiresIn: "120m",
         };
@@ -41,15 +43,15 @@ usersModel.findOne({email})
         throw new Error(error.message);
       }
     })
-.catch((err)=>{ res.status(500).json({
-    success: false,
-    message: `Server Error`,
-    err: err.message,
-  });})
-}
-
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
 
 module.exports = {
-    login,
-  };
-  
+  login,
+};

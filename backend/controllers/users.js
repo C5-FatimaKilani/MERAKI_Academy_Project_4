@@ -2,8 +2,8 @@ const req = require("express/lib/request");
 const usersModel = require("../models/users");
 
 ///this function to create new user
-const register = (req,res) => {
-    console.log(req)
+const register = (req, res) => {
+  console.log(req);
   const { firstName, lastName, age, country, email, password } = req.body;
 
   const user = new usersModel({
@@ -26,7 +26,7 @@ const register = (req,res) => {
     })
     //error handling
     .catch((error) => {
-//err.keyPattern => If error is a mongoose duplication key error
+      //err.keyPattern => If error is a mongoose duplication key error
       if (err.keyPattern) {
         return res.status(409).json({
           success: false,

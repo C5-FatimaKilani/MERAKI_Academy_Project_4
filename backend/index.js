@@ -13,11 +13,13 @@ app.use(express.json());
 const usersRouter = require("./routes/users");
 const loginRouter = require("./routes/login");
 const categoriesRouter = require("./routes/categories");
+const productsRouter = require("./routes/products")
 
 // Routes Middleware
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
 app.use("/categories", categoriesRouter);
+app.use("/products", productsRouter)
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
