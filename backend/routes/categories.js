@@ -13,8 +13,8 @@ const authorization = require("../middleware/authorization");
 // Create categories router
 const categoriesRouter = express.Router();
 
-categoriesRouter.post("/", createCategory);
+categoriesRouter.post("/",authentication ,createCategory);
 
-categoriesRouter.get("/", authentication, getAllCategories);
+categoriesRouter.get("/", getAllCategories);
 
 module.exports = categoriesRouter;

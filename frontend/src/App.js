@@ -1,6 +1,8 @@
 import {Register} from "./components/Register/Register"
 import {Login} from "./components/Login/Login"
 import { Navbar } from "./components/Navbar/Navbar";
+import {Dashboard} from "./components/Dashboard/Dashboard"
+
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import React, {useState ,createContext} from 'react'
@@ -26,7 +28,8 @@ const App = () => {
         <Navbar />
       <Routes>
         <Route path="/register" element={<Register />}/>
-        <Route path="login" element={<Login />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/dashboard" element={<Dashboard />}/>
       </Routes>
       </methodContext.Provider>
     </div>
