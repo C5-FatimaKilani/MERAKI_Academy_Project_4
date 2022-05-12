@@ -21,7 +21,7 @@ app.use("/users", usersRouter);
 app.use("/login", loginRouter);
 app.use("/categories", categoriesRouter);
 app.use("/products", productsRouter);
-app.use("/wishList", wishListRouter)
+app.use("/wishLists", wishListRouter)
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
