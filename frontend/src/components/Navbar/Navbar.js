@@ -8,8 +8,8 @@ export const Navbar = () => {
     useContext(methodContext);
 
   const logout = () => {
-    localStorage.clear("token");
-    setToken(null);
+    localStorage.clear();
+    setToken("");
     setIsLoggedIn(false);
     navigate("/login");
   };
