@@ -15,13 +15,15 @@ export const Dashboard = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+
+
 const getAllCategories = (e) => {
      // e.preventDefault();
      axios
     .get(`http://localhost:5000/categories`, {
-      headers: {
-        authorization: "Bearer " + token,
-      },
+    //   headers: {
+    //     authorization: "Bearer " + token,
+    //   },
     })
     .then((result) => {
       console.log(result);
@@ -33,6 +35,18 @@ const getAllCategories = (e) => {
     });
 }
 
+const addCategoryButton = async (e) => {
+    e.preventDefault();
+    await axios.post(
+      `http://localhost:5000/categories/`,
+      {
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      }
+    );
+  };
+
      useEffect(() => {
         console.log(token);
         getAllCategories()
@@ -41,7 +55,20 @@ const getAllCategories = (e) => {
 return(
     <div>
         Dashboard:
+        {categories &&
+        categories.map((category) => {
+          return (
+            <div>
+              <p> Title : {category.title} </p>
+              <br />
 
+              <p> Image : {category.img} </p>
+              <br />
+
+              <button onClick={addCategoryButton}>Adding Category</button>
+            </div>
+          );
+        })}
 
     </div>
 )
