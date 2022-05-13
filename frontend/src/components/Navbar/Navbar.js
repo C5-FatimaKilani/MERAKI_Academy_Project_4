@@ -1,24 +1,23 @@
-
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { methodContext } from "../../App";
 
 export const Navbar = () => {
-    const navigate = useNavigate();
-    const {token, setToken,isLoggedIn, setIsLoggedIn} = useContext(methodContext);
+  const navigate = useNavigate();
+  const { token, setToken, isLoggedIn, setIsLoggedIn } =
+    useContext(methodContext);
 
-    const logout = () => {
-        localStorage.clear("token");
-        setToken(null);
-        setIsLoggedIn(false);
-        navigate("/login");
-      };
+  const logout = () => {
+    localStorage.clear("token");
+    setToken(null);
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
 
-    return(
-        <div className="Navbar">
-<Link to="/login">Login</Link>
+  return (
+    <div className="Navbar">
+      <Link to="/login">Login</Link>
       <Link to="/register">Register</Link>
-      
 
       <button
         onClick={() => {
@@ -28,9 +27,7 @@ export const Navbar = () => {
         Back
       </button>
 
-     
       <button onClick={logout}>Log Out</button>
-        </div>
-
-    )
-}
+    </div>
+  );
+};
