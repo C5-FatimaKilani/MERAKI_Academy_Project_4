@@ -25,6 +25,7 @@ export const Login = () => {
           setToken(result.data.token);
           setIsLoggedIn(true);
           navigate("/dashboard");
+          setMessage("loged in succefully")
           localStorage.setItem("token",result.data.token)
         })
         .catch((error) => {
@@ -35,8 +36,10 @@ export const Login = () => {
     };
   
   return (
+   
     <div>Login
-       <input
+       
+             <input
         type="email"
         placeholder="Email "
         onChange={(e) => {
@@ -54,6 +57,7 @@ export const Login = () => {
       <br />
       <button onClick={clickLogin}>Login</button>
       <br />
+      {message}
       <button
         onClick={() => {
           navigate(-1);
