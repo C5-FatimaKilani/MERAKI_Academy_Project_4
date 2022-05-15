@@ -25,9 +25,6 @@ const createCategory = (req, res) => {
 };
 
 const getAllCategories = (req, res) => {
-  console.log("lalalalal" + req.token);
-  const userId = req.token.userId;
-  console.log(req.token.userId);
   categoriesModel
     .find({})
     .then((categories) => {
@@ -35,7 +32,6 @@ const getAllCategories = (req, res) => {
         res.status(200).json({
           success: true,
           message: `All the categories`,
-          userId: userId,
           categories: categories,
         });
       } else {

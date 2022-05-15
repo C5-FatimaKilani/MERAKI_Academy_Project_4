@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {Link, useParams } from "react-router-dom";
 
 import { methodContext } from "../../App";
 
@@ -13,8 +13,9 @@ export const Dashboard = () => {
   const [title, setTitle] = useState("");
   const [img, setImg] = useState("");
   const [show, setShow] = useState(false);
-//================================================================================
+  //================================================================================
   const getAllCategories = async () => {
+    console.log(token);
     try {
       const result = await axios.get(`http://localhost:5000/categories`, {
         headers: {
@@ -22,17 +23,18 @@ export const Dashboard = () => {
         },
       });
       if (result.data.success) {
+        console.log(result);
         setCategories(result.data.categories);
-        setMessage("");
-        setShow(true);
+        // setMessage("");
+        // setShow(true);
         setUserId(result.data.userId);
       } else throw Error;
     } catch (error) {
-      return setMessage(error.response.data.message);
+      //   return setMessage(error.response.data.message);
     }
-    setMessage("Error happened while Get Data, please try again");
+    // setMessage("Error happened while Get Data, please try again");
   };
-//================================================================================
+  //================================================================================
   const addCategoryButton = async (e) => {
     e.preventDefault();
     try {
@@ -47,31 +49,33 @@ export const Dashboard = () => {
       setMessage(error.response.data.message);
     }
   };
-//================================================================================
+  //================================================================================
   useEffect(() => {
     getAllCategories();
   }, []);
-//================================================================================
+  //================================================================================
   return (
     <>
-    <div>
-        
-      {show &&
-        categories.map((category) => {
-          return (
-            <div>
-              <div className="category">
-                <div>{category.title} </div>
-                <div>{category.img} </div>
-              </div>
+      <div>
+        {categories.length &&
+          categories.map((category) => {
+            return (
+              <div>
+                <div className="category">
+                    <h1 className="title">{category.title}</h1>
 
-              <button onClick={addCategoryButton}>Adding Category</button>
-            </div>
-          );
-        })}
-          {message && <div>{message}</div>}
-          
-    </div>
-   </>
+                    {/* http://localhost:5000/products/search_1?category=2 */}
+
+                  <Link to="/category.title">{category.title} </Link>
+                  <Link to="/category.img">{category.img} </Link>
+                </div>
+              </div>
+            );
+          })}
+        <button onClick={addCategoryButton}>Adding Category</button>
+
+        {/* {message && <div>{message}</div>} */}
+      </div>
+    </>
   );
 };

@@ -122,6 +122,8 @@ const deleteProductById = (req, res) => {
 
   //This function returns products by category Name => for filtering
 
+  // GET  ->        http://localhost:5000/products/search_1?category=2
+
   const getProductByCategory = (req,res) => {
     let categoryTitle = req.query.category;
 

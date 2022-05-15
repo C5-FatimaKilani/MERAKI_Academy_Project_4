@@ -1,4 +1,4 @@
-import React, {  useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import axios from "axios";
 import { methodContext } from "../../App";
 
@@ -12,35 +12,42 @@ export const Login = () => {
   const { token, setToken, message, setMessage, isLoggedIn, setIsLoggedIn } =
     useContext(methodContext);
 
-    const clickLogin = (e) => {
-      // prevent the form from refreshing the whole page
-      e.preventDefault();
-  
-      axios
-        .post("http://localhost:5000/login/", {
-          email: email,
-          password: password,
-        })
-        .then((result) => {
-          setToken(result.data.token);
-          setIsLoggedIn(true);
-        
-          setMessage("loged in succefully")
-          navigate("/dashboard");
-          localStorage.setItem("token",result.data.token)
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-          setIsLoggedIn(false);
-          setMessage(error.response.data.message);
-        });
-    };
-  
+  const clickLogin = (e) => {
+    // prevent the form from refreshing the whole page
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:5000/login/", {
+        email: email,
+        password: password,
+      })
+      .then((result) => {
+        setToken(result.data.token);
+        setIsLoggedIn(true);
+
+        setMessage("loged in succefully");
+        localStorage.setItem("token", result.data.token);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        setIsLoggedIn(false);
+        setMessage(error.response.data.message);
+      });
+  };
+  //=============================================
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dashboard");
+    }
+  });
+  //=============================================
+
   return (
-   
-    <div>Login
-       
-             <input
+    <div>
+      Login
+      <input
         type="email"
         placeholder="Email "
         onChange={(e) => {
@@ -67,6 +74,5 @@ export const Login = () => {
         Back
       </button>
     </div>
-  )
-}
-
+  );
+};

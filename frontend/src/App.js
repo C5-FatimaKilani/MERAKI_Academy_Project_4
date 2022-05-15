@@ -1,11 +1,13 @@
-import {Register} from "./components/Register/Register"
-import {Login} from "./components/Login/Login"
+import { Register } from "./components/Register/Register";
+import { Login } from "./components/Login/Login";
 import { Navbar } from "./components/Navbar/Navbar";
-import {Dashboard} from "./components/Dashboard/Dashboard"
+import { Dashboard } from "./components/Dashboard/Dashboard";
 
 import { Routes, Route } from "react-router-dom";
-import './App.css';
-import React, {useState ,createContext} from 'react'
+import "./App.css";
+import React, { useState, createContext } from "react";
+import { CreateCategory } from "./components/Createcategory/Createcategory";
+
 export const methodContext = createContext();
 
 const App = () => {
@@ -26,14 +28,20 @@ const App = () => {
         }}
       >
         <Navbar />
-      <Routes>
-        <Route path="/register" element={<Register />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
-      </Routes>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/createCategory" element={<CreateCategory />} />
+          {/* Route /:category -> insidecomponent useParams*/}
+
+          CreateCategory
+
+          {/* <Route path="/category/create" element={<CreateCategory />}/> */}
+        </Routes>
       </methodContext.Provider>
     </div>
   );
-}
+};
 
 export default App;
