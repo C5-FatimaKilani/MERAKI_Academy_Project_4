@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 // import useParams
 import { useParams } from "react-router-dom";
+import "./GetProducts.css"
 import { methodContext } from "../../App";
 
 //============================================
@@ -99,10 +100,81 @@ useEffect(() => {
 //===========================================
 return(
     <>
-    <div>
-        
-    </div>
-    </>
+    <br />
+    {products.length &&
+      products.map((product, index) => (
+        <div key={index} className="product">
+          <div>{product.title}</div>
+          <div>{product.description}</div>
+          <div>{product.price}</div>
+          <div>
+            {product.comments ? (
+              product.comments.map((comment, i) => {
+                return (
+                  <p className="comment" key={i}>
+                    {comment.comment}
+                  </p>
+                );
+              })
+            ) : (
+              <></>
+            )}
+          </div>
+          {product.category === categoryId && (
+            <>
+              {updateBox && productId === product._id && (
+                <form>
+                  <br />
+                  <input
+                    type="text"
+                    defaultValue={product.title}
+                    placeholder="product title here"
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <br />
+
+                  <textarea
+                    placeholder="product description here"
+                    defaultValue={product.description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  ></textarea>
+                </form>
+              )}
+              <button
+                className="delete"
+                onClick={() => deleteProduct(product._id)}
+              >
+                X
+              </button>
+              <button
+                className="update"
+                onClick={() =>updateClick(product)}
+              >
+                Update
+              </button>
+            </>
+          )}
+          <div>
+            <textarea
+              className="commentBox"
+              placeholder="comment..."
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+            />
+            <button
+              className="commentBtn"
+              onClick={() => {
+                addComment(product._id);
+              }}
+            >
+              Add comment
+            </button>
+          </div>
+        </div>
+      ))}
+    {message && <div>{message}</div>}
+  </>
 )
 
 
