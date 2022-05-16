@@ -72,7 +72,24 @@ const deleteProduct = async (id) => {
     }
   };
 //===========================================
-
+const addComment = async (id) => {
+    try {
+      await axios.post(
+        `http://localhost:5000/products/${id}/comments`,
+        {
+          comment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      getProductsByCategory();
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 //===========================================
 
 //===========================================
