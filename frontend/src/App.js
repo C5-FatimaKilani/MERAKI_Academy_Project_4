@@ -2,11 +2,12 @@ import { Register } from "./components/Register/Register";
 import { Login } from "./components/Login/Login";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Dashboard } from "./components/Dashboard/Dashboard";
-
+import {Products} from "./components/GetProducts/GetProducts"
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import React, { useState, createContext } from "react";
 import { CreateCategory } from "./components/Createcategory/Createcategory";
+
 
 export const methodContext = createContext();
 
@@ -35,7 +36,7 @@ const App = () => {
           <Route path="/createCategory" element={<CreateCategory />} />
           {/* Route /:category -> insidecomponent useParams*/}
 
-          {/* <Route path="/category/create" element={<CreateCategory />}/> */}
+          <Route path="/category/:id" element={<Products/>}/>
         </Routes>
       </methodContext.Provider>
     </div>

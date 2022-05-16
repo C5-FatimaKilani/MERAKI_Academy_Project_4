@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 // import useParams
 import { useParams } from "react-router-dom";
-import "./GetProducts.css"
+import "./GetProducts.css";
 import { methodContext } from "../../App";
 
 //============================================
-const Products =() =>{
-    const { token } = useContext(methodContext);
+export const Products = () => {
+  const { token } = useContext(methodContext);
 
-    const [products, setProducts] = useState("");
+  const [products, setProducts] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -19,43 +19,45 @@ const Products =() =>{
   const [userId, setUserId] = useState("");
   const [comment, setComment] = useState("");
 
-// {id} from useParams
-const { id } = useParams();
-
-    const getProductsByCategory = async(id) => {
-try{
-    // http://localhost:5000/products/search_1?category=627a6466b593400661bbfd18
-const result = await axios.get(`http://localhost:5000/products/search_1?category=${id}`,{
-    headers: {
-        Authorization: `Bearer ${token}`,
-      }, 
-});
-if(result.data.success){
-    setArticles(result.data.products);
-    setMessage("");
-}else throw Error;
-
-}catch(error){
-    setMessage(error.response.data.message);
-}
-
+  // {id} from useParams
+  const { id } = useParams();
+  
+  const getProductsByCategory = async () => {
+      console.log(id);
+    try {
+      // http://localhost:5000/products/search_1?category=627a6466b593400661bbfd18
+      const result = await axios.get(
+        `http://localhost:5000/products/search_1?category=${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (result.data.success) {
+        setProducts(result.data.products);
+        setMessage("");
+      } else throw Error;
+    } catch (error) {
+      setMessage(error.response.data.message);
     }
-//===========================================
-const updateProduct = async (id) => {
+  };
+  //===========================================
+  const updateProduct = async () => {
     try {
       await axios.put(`http://localhost:5000/products/${id}`, {
         title,
         description,
         price,
-        img
+        // img,
       });
       getProductsByCategory();
     } catch (error) {
       console.log(error);
     }
   };
-//===========================================
-const updateClick = (product) => {
+  //===========================================
+  const updateClick = (product) => {
     setUpdateBox(!updateBox);
     setProductId(product._id);
     setTitle(product.title);
@@ -63,8 +65,8 @@ const updateClick = (product) => {
     setPrice(product.price);
     if (updateBox) updateProduct(product._id);
   };
-//===========================================
-const deleteProduct = async (id) => {
+  //===========================================
+  const deleteProduct = async () => {
     try {
       await axios.delete(`http://localhost:5000/products/${id}`);
       getProductsByCategory();
@@ -72,8 +74,8 @@ const deleteProduct = async (id) => {
       console.log(error);
     }
   };
-//===========================================
-const addComment = async (id) => {
+  //===========================================
+  const addComment = async () => {
     try {
       await axios.post(
         `http://localhost:5000/products/${id}/comments`,
@@ -91,91 +93,88 @@ const addComment = async (id) => {
       console.log(error.response);
     }
   };
-//===========================================
+  //===========================================
 
-//===========================================
-useEffect(() => {
+  //===========================================
+  useEffect(() => {
     getProductsByCategory();
   }, []);
-//===========================================
-return(
+  //===========================================
+  return (
     <>
-    <br />
-    {products.length &&
-      products.map((product, index) => (
-        <div key={index} className="product">
-          <div>{product.title}</div>
-          <div>{product.description}</div>
-          <div>{product.price}</div>
-          <div>
-            {product.comments ? (
-              product.comments.map((comment, i) => {
-                return (
-                  <p className="comment" key={i}>
-                    {comment.comment}
-                  </p>
-                );
-              })
-            ) : (
-              <></>
-            )}
-          </div>
-          {product.category === categoryId && (
-            <>
-              {updateBox && productId === product._id && (
-                <form>
-                  <br />
-                  <input
-                    type="text"
-                    defaultValue={product.title}
-                    placeholder="product title here"
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                  <br />
-
-                  <textarea
-                    placeholder="product description here"
-                    defaultValue={product.description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  ></textarea>
-                </form>
+      <br />
+      {products.length &&
+        products.map((product, index) => (
+          <div key={index} className="product">
+            <div>Title : {product.title}</div>
+            <br />
+            <div>Description of product : {product.description}</div>
+            <br />
+            <div>Price : {product.price}</div>
+            <div>
+              {product.comments ? (
+                product.comments.map((comment, i) => {
+                  return (
+                    <p className="comment" key={i}>
+                      {comment.comment}
+                    </p>
+                  );
+                })
+              ) : (
+                <></>
               )}
+            </div>
+            {product.userId === userId  && (
+              <>
+                {updateBox && productId === product._id && (
+                  <form>
+                    <br />
+                    <input
+                      type="text"
+                      defaultValue={product.title}
+                      placeholder="product title here"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <br />
+
+                    <textarea
+                      placeholder="product description here"
+                      defaultValue={product.description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    ></textarea>
+                  </form>
+                )}
+                <button
+                  className="delete"
+                  onClick={() => deleteProduct(product._id)}
+                >
+                  X
+                </button>
+                <button className="update" onClick={() => updateClick(product)}>
+                  Update
+                </button>
+              </>
+            )}
+            <div>
+              <textarea
+                className="commentBox"
+                placeholder="comment..."
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+              />
               <button
-                className="delete"
-                onClick={() => deleteProduct(product._id)}
+                className="commentBtn"
+                onClick={() => {
+                  addComment(product._id);
+                }}
               >
-                X
+                Add comment
               </button>
-              <button
-                className="update"
-                onClick={() =>updateClick(product)}
-              >
-                Update
-              </button>
-            </>
-          )}
-          <div>
-            <textarea
-              className="commentBox"
-              placeholder="comment..."
-              onChange={(e) => {
-                setComment(e.target.value);
-              }}
-            />
-            <button
-              className="commentBtn"
-              onClick={() => {
-                addComment(product._id);
-              }}
-            >
-              Add comment
-            </button>
+            </div>
           </div>
-        </div>
-      ))}
-    {message && <div>{message}</div>}
-  </>
-)
-
-
-}
+        ))}
+      {message && <div>{message}</div>}
+    </>
+  );
+};

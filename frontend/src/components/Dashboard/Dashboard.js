@@ -65,8 +65,9 @@ export const Dashboard = () => {
                   <h1 className="title">{category.title}</h1>
 
                   {/* http://localhost:5000/products/search_1?category=2 */}
+{/* "/category/:id"  */}
 
-                  <Link to="/category.id.title">{category.title} </Link>
+                  <Link to={`/category/${category._id}`}>{category.title} </Link>
                   <Link to="/category.img">{category.img} </Link>
                 </div>
               </div>
