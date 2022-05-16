@@ -35,8 +35,6 @@ const App = () => {
           <Route path="/createCategory" element={<CreateCategory />} />
           {/* Route /:category -> insidecomponent useParams*/}
 
-          CreateCategory
-
           {/* <Route path="/category/create" element={<CreateCategory />}/> */}
         </Routes>
       </methodContext.Provider>

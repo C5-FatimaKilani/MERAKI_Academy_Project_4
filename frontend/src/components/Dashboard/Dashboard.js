@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import {Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { methodContext } from "../../App";
 
@@ -62,11 +62,11 @@ export const Dashboard = () => {
             return (
               <div>
                 <div className="category">
-                    <h1 className="title">{category.title}</h1>
+                  <h1 className="title">{category.title}</h1>
 
-                    {/* http://localhost:5000/products/search_1?category=2 */}
+                  {/* http://localhost:5000/products/search_1?category=2 */}
 
-                  <Link to="/category.title">{category.title} </Link>
+                  <Link to="/category.id.title">{category.title} </Link>
                   <Link to="/category.img">{category.img} </Link>
                 </div>
               </div>
