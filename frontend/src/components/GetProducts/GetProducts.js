@@ -8,6 +8,16 @@ import { methodContext } from "../../App";
 const Products =() =>{
     const { token } = useContext(methodContext);
 
+    const [products, setProducts] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [updateBox, setUpdateBox] = useState(false);
+  const [productId, setProductId] = useState(false);
+  const [message, setMessage] = useState("");
+  const [userId, setUserId] = useState("");
+  const [comment, setComment] = useState("");
+
 // {id} from useParams
 const { id } = useParams();
 
@@ -43,6 +53,19 @@ const updateProduct = async (id) => {
       console.log(error);
     }
   };
+//===========================================
+const updateClick = (product) => {
+    setUpdateBox(!updateBox);
+    setProductId(product._id);
+    setTitle(product.title);
+    setDescription(product.description);
+    setPrice(product.price);
+    if (updateBox) updateProduct(product._id);
+  };
+//===========================================
+
+//===========================================
+
 //===========================================
 
 //===========================================
