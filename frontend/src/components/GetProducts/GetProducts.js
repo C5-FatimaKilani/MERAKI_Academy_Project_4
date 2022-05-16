@@ -63,7 +63,14 @@ const updateClick = (product) => {
     if (updateBox) updateProduct(product._id);
   };
 //===========================================
-
+const deleteProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/products/${id}`);
+      getProductsByCategory();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 //===========================================
 
 //===========================================
