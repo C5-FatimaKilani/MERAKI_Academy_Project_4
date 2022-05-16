@@ -43,32 +43,45 @@ export const Products = () => {
     }
   };
   //===========================================
-  const updateProduct = async () => {
+  const updateProduct = async (putProduct) => {
+    // /products
     try {
-      await axios.put(`http://localhost:5000/products/${id}`, {
+      await axios.put(`http://localhost:5000/products/${putProduct}`, {
         title,
         description,
         price,
         // img,
+      },{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       getProductsByCategory();
     } catch (error) {
       console.log(error);
     }
   };
   //===========================================
-  const updateClick = (putProduct) => {
+  const updateClick = (product) => {
+// if(){}=>
+
     setUpdateBox(!updateBox);
-    setProductId(putProduct._id);
-    setTitle(putProduct.title);
-    setDescription(putProduct.description);
-    setPrice(putProduct.price);
-    if (updateBox) updateProduct(putProduct._id);
+    setProductId(product._id);
+    setTitle(product.title);
+    setDescription(product.description);
+    setPrice(product.price);
+    if (updateBox) updateProduct(product._id);
   };
   //===========================================
   const deleteProduct = async (delProdId) => {
+      console.log(delProdId);
     try {
-      await axios.delete(`http://localhost:5000/products/${delProdId}`);
+      await axios.delete(`http://localhost:5000/products/${delProdId}`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       getProductsByCategory();
     } catch (error) {
       console.log(error);
@@ -175,9 +188,9 @@ export const Products = () => {
                 X
               </button>
 {/* ==================================== */}
-{product.userId === userId  && (
+{true  && (
               <>
-                {updateBox && productId === product._id && (
+                {true && true && (
                   <form>
                     <br />
                     <input

@@ -14,6 +14,15 @@ const [ url, setUrl ] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
 
+  //===============================================
+//   const uploadImage = () => {
+//     const data = new FormData()
+
+//     data.append("file", image)
+// data.append("upload_preset", "tutorial")
+// data.append("cloud_name","breellz")
+//   }
+
   //===============================================================
   const createCategoryButton = async (e) => {
     e.preventDefault();
