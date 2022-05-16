@@ -11,7 +11,7 @@ const Products =() =>{
 // {id} from useParams
 const { id } = useParams();
 
-    const getProductsByCategory = async() => {
+    const getProductsByCategory = async(id) => {
 try{
     // http://localhost:5000/products/search_1?category=627a6466b593400661bbfd18
 const result = await axios.get(`http://localhost:5000/products/search_1?category=${id}`,{
@@ -30,7 +30,19 @@ if(result.data.success){
 
     }
 //===========================================
-
+const updateProduct = async (id) => {
+    try {
+      await axios.put(`http://localhost:5000/products/${id}`, {
+        title,
+        description,
+        price,
+        img
+      });
+      getProductsByCategory();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 //===========================================
 
 //===========================================
