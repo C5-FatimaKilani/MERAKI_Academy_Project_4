@@ -75,10 +75,11 @@ export const Products = () => {
     }
   };
   //===========================================
-  const addComment = async () => {
+  const addComment = async (prodId) => {
+      console.log(prodId);
     try {
       await axios.post(
-        `http://localhost:5000/products/${id}/comments`,
+        `http://localhost:5000/products/${prodId}/comments`,
         {
           comment,
         },
@@ -144,15 +145,7 @@ export const Products = () => {
                     ></textarea>
                   </form>
                 )}
-                <button
-                  className="delete"
-                  onClick={() => deleteProduct(product._id)}
-                >
-                  X
-                </button>
-                <button className="update" onClick={() => updateClick(product)}>
-                  Update
-                </button>
+                
               </>
             )}
             <div>
@@ -171,6 +164,15 @@ export const Products = () => {
               >
                 Add comment
               </button>
+              <button
+                  className="delete"
+                  onClick={() => deleteProduct(product._id)}
+                >
+                  delete
+                </button>
+                <button className="update" onClick={() => updateClick(product)}>
+                  Update
+                </button>
             </div>
           </div>
         ))}

@@ -9,7 +9,8 @@ import { methodContext } from "../../App";
 export const CreateCategory = () => {
   const { token, isLoggedIn } = useContext(methodContext);
   const [title, setTitle] = useState("");
-  const [img, setImg] = useState("");
+  const [image, setImage ] = useState("");
+const [ url, setUrl ] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
 
@@ -19,7 +20,7 @@ export const CreateCategory = () => {
     try {
       const category = {
         title,
-        img,
+        image,
       };
       const result = await axios.post(
         "http://localhost:5000/categories",
