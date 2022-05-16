@@ -21,9 +21,9 @@ export const Products = () => {
 
   // {id} from useParams
   const { id } = useParams();
-  
+
   const getProductsByCategory = async () => {
-      console.log(id);
+    console.log(id);
     try {
       // http://localhost:5000/products/search_1?category=627a6466b593400661bbfd18
       const result = await axios.get(
@@ -57,18 +57,18 @@ export const Products = () => {
     }
   };
   //===========================================
-  const updateClick = (product) => {
+  const updateClick = (putProduct) => {
     setUpdateBox(!updateBox);
-    setProductId(product._id);
-    setTitle(product.title);
-    setDescription(product.description);
-    setPrice(product.price);
-    if (updateBox) updateProduct(product._id);
+    setProductId(putProduct._id);
+    setTitle(putProduct.title);
+    setDescription(putProduct.description);
+    setPrice(putProduct.price);
+    if (updateBox) updateProduct(putProduct._id);
   };
   //===========================================
-  const deleteProduct = async () => {
+  const deleteProduct = async (delProdId) => {
     try {
-      await axios.delete(`http://localhost:5000/products/${id}`);
+      await axios.delete(`http://localhost:5000/products/${delProdId}`);
       getProductsByCategory();
     } catch (error) {
       console.log(error);
@@ -76,7 +76,7 @@ export const Products = () => {
   };
   //===========================================
   const addComment = async (prodId) => {
-      console.log(prodId);
+    console.log(prodId);
     try {
       await axios.post(
         `http://localhost:5000/products/${prodId}/comments`,
@@ -116,16 +116,66 @@ export const Products = () => {
               {product.comments ? (
                 product.comments.map((comment, i) => {
                   return (
-                    <p className="comment" key={i}>
-                      {comment.comment}
-                    </p>
+                    <div>
+                      <p className="comment" key={i}>
+                        {comment.comment}
+                      </p>
+                      <button className="deleteComment">X</button>
+                    </div>
                   );
                 })
               ) : (
                 <></>
               )}
             </div>
-            {product.userId === userId  && (
+            {/* {product.userId === userId  && (
+              <>
+                {updateBox && productId === product._id && (
+                  <form>
+                    <br />
+                    <input
+                      type="text"
+                      defaultValue={product.title}
+                      placeholder="product title here"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <br />
+
+                    <textarea
+                      placeholder="product description here"
+                      defaultValue={product.description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    ></textarea>
+                  </form>
+                )}
+                
+              </>
+            )} */}
+            <div>
+              <textarea
+                className="commentBox"
+                placeholder="comment..."
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+              />
+              <button
+                className="commentBtn"
+                onClick={() => {
+                  addComment(product._id);
+                }}
+              >
+                Add comment
+              </button>
+{/* ==================================== */}
+              <button
+                className="delete"
+                onClick={() => deleteProduct(product._id)}
+              >
+                X
+              </button>
+{/* ==================================== */}
+{product.userId === userId  && (
               <>
                 {updateBox && productId === product._id && (
                   <form>
@@ -148,31 +198,10 @@ export const Products = () => {
                 
               </>
             )}
-            <div>
-              <textarea
-                className="commentBox"
-                placeholder="comment..."
-                onChange={(e) => {
-                  setComment(e.target.value);
-                }}
-              />
-              <button
-                className="commentBtn"
-                onClick={() => {
-                  addComment(product._id);
-                }}
-              >
-                Add comment
+
+              <button className="update" onClick={() => updateClick(product)}>
+                Update
               </button>
-              <button
-                  className="delete"
-                  onClick={() => deleteProduct(product._id)}
-                >
-                  delete
-                </button>
-                <button className="update" onClick={() => updateClick(product)}>
-                  Update
-                </button>
             </div>
           </div>
         ))}
