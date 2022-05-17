@@ -2,7 +2,7 @@ const productsModel = require("../models/products");
 
 // This function creates new article
 const createProduct = (req, res) => {
-  const { title, description, price,categoryId } = req.body;
+  const { title, description, price,categoryId ,img} = req.body;
 
   console.log("A'm toooooken a'm heeere" + req.token);
 
@@ -12,7 +12,7 @@ const createProduct = (req, res) => {
     price,
     categoryId,
     userId: req.token.userId,
-    
+    img,
   });
 
   newProduct

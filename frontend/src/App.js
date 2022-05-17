@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import React, { useState, createContext } from "react";
 import { CreateCategory } from "./components/Createcategory/Createcategory";
-
+import "./App.css"
 
 export const methodContext = createContext();
 
@@ -17,7 +17,8 @@ const App = () => {
   const [message, setMessage] = useState("");
   return (
     <div className="App">
-      <h1>Welcome in SooqCom</h1>
+      
+      <h1 className="welcome"> Welcome in SooqCom</h1>
       <methodContext.Provider
         value={{
           token,

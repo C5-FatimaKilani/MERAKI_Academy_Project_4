@@ -73,7 +73,7 @@ export const Dashboard = () => {
               </div>
             );
           })}
-        <button onClick={addCategoryButton}>Adding Category</button>
+        
 
         {/* {message && <div>{message}</div>} */}
       </div>

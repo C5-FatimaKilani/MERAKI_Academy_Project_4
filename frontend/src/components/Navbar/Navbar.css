@@ -3,10 +3,26 @@
     margin-bottom: 3px;
     font-size: 18px;
     font-family: "Segoe UI";
+    background-color: brown;
+    color: #FFBB33;
+    
+    flex-direction: row;
   }
   
-  .Link {
+  .link {
     margin-right: 40px;
+    text-decoration: none;
+color: #A9A093;
+font-size: 150%;
+
+  }
+
+  .link:hover {
+    margin-right: 40px;
+    text-decoration: none;
+color: #166d50;
+font-size: larger;
+
   }
   
   .logout {

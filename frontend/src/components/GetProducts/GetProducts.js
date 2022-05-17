@@ -46,16 +46,20 @@ export const Products = () => {
   const updateProduct = async (putProduct) => {
     // /products
     try {
-      await axios.put(`http://localhost:5000/products/${putProduct}`, {
-        title,
-        description,
-        price,
-        // img,
-      },{
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.put(
+        `http://localhost:5000/products/${putProduct}`,
+        {
+          title,
+          description,
+          price,
+          // img,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       getProductsByCategory();
     } catch (error) {
@@ -64,7 +68,7 @@ export const Products = () => {
   };
   //===========================================
   const updateClick = (product) => {
-// if(){}=>
+    //  if(products.userId === userId){
 
     setUpdateBox(!updateBox);
     setProductId(product._id);
@@ -72,12 +76,13 @@ export const Products = () => {
     setDescription(product.description);
     setPrice(product.price);
     if (updateBox) updateProduct(product._id);
+// }
   };
   //===========================================
   const deleteProduct = async (delProdId) => {
-      console.log(delProdId);
+    console.log(delProdId);
     try {
-      await axios.delete(`http://localhost:5000/products/${delProdId}`,{
+      await axios.delete(`http://localhost:5000/products/${delProdId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -180,37 +185,48 @@ export const Products = () => {
               >
                 Add comment
               </button>
-{/* ==================================== */}
+              {/* ==================================== */}
               <button
                 className="delete"
                 onClick={() => deleteProduct(product._id)}
               >
                 X
               </button>
-{/* ==================================== */}
-{true  && (
-              <>
-                {true && true && (
-                  <form>
-                    <br />
-                    <input
-                      type="text"
-                      defaultValue={product.title}
-                      placeholder="product title here"
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <br />
+              {/* ==================================== */}
+              {
+            //   products.userId === userId 
+             (
+                <>
+                  {
+                //   updateBox && productId === product._id && 
+                  (
+                    <form>
+                      <br />
+                      <input
+                        type="text"
+                        defaultValue={product.title}
+                        placeholder="product title here"
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                      <br />
 
-                    <textarea
-                      placeholder="product description here"
-                      defaultValue={product.description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    ></textarea>
-                  </form>
-                )}
-                
-              </>
-            )}
+                      <textarea
+                        placeholder="product description here"
+                        defaultValue={product.description}
+                        onChange={(e) => setDescription(e.target.value)}
+                      ></textarea>
+                      <br />
+                      <input
+                        type="text"
+                        defaultValue={product.price}
+                        placeholder="product Price here"
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
+                      <br />
+                    </form>
+                  )}
+                </>
+              )}
 
               <button className="update" onClick={() => updateClick(product)}>
                 Update

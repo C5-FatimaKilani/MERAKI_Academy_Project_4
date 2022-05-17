@@ -3,7 +3,7 @@ import axios from "axios";
 import { methodContext } from "../../App";
 
 import { useNavigate } from "react-router-dom";
-
+import "./Login.css"
 export const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -45,9 +45,13 @@ export const Login = () => {
   //=============================================
 
   return (
-    <div>
-      Login
+    <div className="login">
+      
+      <form>
+      
+
       <input
+       className="login__input"
         type="email"
         placeholder="Email "
         onChange={(e) => {
@@ -56,6 +60,7 @@ export const Login = () => {
       />
       <br />
       <input
+        className="login__input"
         type="password"
         placeholder="Password "
         onChange={(e) => {
@@ -63,10 +68,13 @@ export const Login = () => {
         }}
       />
       <br />
-      <button onClick={clickLogin}>Login</button>
+      <button className="login__button" onClick={clickLogin}>Login</button>
       <br />
       {message}
+
+      </form>
       <button
+      className="login__button"
         onClick={() => {
           navigate(-1);
         }}

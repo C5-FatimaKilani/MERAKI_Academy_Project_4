@@ -17,13 +17,13 @@ export const Navbar = () => {
   return (
     <div className="Navbar">
 
-         <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+         {/* <Link className="link" to="/login">Login</Link>
+          <Link className="link" to="/register">Register</Link> */}
       {isLoggedIn ? (
-        <><Link className="Link" to="/dashboard">
+        <><Link className="link"  to="/dashboard">
         Dashboard
       </Link>
-      <Link className="Link" to="/CreateCategory">
+      <Link className="link" to="/CreateCategory">
         Add New Category
       </Link>
       <button className="logout" onClick={logout}>
@@ -33,8 +33,8 @@ export const Navbar = () => {
       </>
       ) : (
         <>
-          <Link className="Link" to="/login">Login</Link>
-          <Link className="Link" to="/register">Register</Link>
+          <Link className="link" to="/login">Login</Link>
+          <Link className="link" to="/register">Register</Link>
         </>
       )}
 
