@@ -1,35 +1,49 @@
-.NavBar {
-    padding: 5px;
-    margin-bottom: 3px;
-    font-size: 18px;
-    font-family: "Segoe UI";
-    background-color: brown;
-    color: #FFBB33;
-    
-    flex-direction: row;
-  }
-  
-  .link {
-    margin-right: 40px;
-    text-decoration: none;
-color: #A9A093;
-font-size: 150%;
+.Navbar {
+  padding: 5px;
+  margin-bottom: 3px;
+  font-size: 18px;
+  font-family: "Segoe UI";
+  background-color: #d2d2d2;
+  color: #665f50;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
-  }
+.NavBar:hover {
+  background-color: #d2d2d2;
+  color: black;
+}
 
-  .link:hover {
-    margin-right: 40px;
-    text-decoration: none;
-color: #166d50;
-font-size: larger;
+.link {
+  margin-right: 30px;
+  text-decoration: none;
+  color: #091610;
+  font-size: 100%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: bold;
+}
 
-  }
-  
-  .logout {
-    background-color: white;
-    text-decoration: underline;
-    color: purple;
-    width: fit-content;
-    font-size: 18px;
-    font-family: "Segoe UI";
-  }
+.link:hover {
+  margin-right: 40px;
+  text-decoration: none;
+  color: #166d50;
+  /* font-size: larger; */
+}
+
+.logout {
+  background: linear-gradient(to right, rgb(241, 241, 241), rgb(45, 25, 48));
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  width: 150px;
+  margin-top: 10px;
+  /* margin-bottom: 0px; */
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.logout:hover {
+  background: linear-gradient(to left, rgb(241, 241, 241), rgb(240, 122, 141));
+}

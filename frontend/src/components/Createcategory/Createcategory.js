@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Createcategory.css";
 import { methodContext } from "../../App";
 
 //===============================================================
 export const CreateCategory = () => {
+  const navigate = useNavigate();
   const { token, isLoggedIn } = useContext(methodContext);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -15,29 +16,30 @@ export const CreateCategory = () => {
   const [status, setStatus] = useState(false);
 
   //===============================================
-  const uploadImage =async() => {
-
+  const uploadImage = async (e) => {
     const data = new FormData();
 
     data.append("file", image);
-    data.append("upload_preset", "wyggi4ze");
+    data.append("upload_preset", "fzupywns");
     // data.append("cloud_name","mylaptob")
-    
 
     console.log(image);
     console.log(data);
 
-  await axios
-      .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", data)
-      .then((response) => {
+    await axios
+      .post("https://api.cloudinary.com/v1_1/how-to-tube/upload", data)
+      .then(async(response) => {
         // console.log(response)
         // .then((res) => {
-          console.log("responseeeeee:"+response);
-          // setUrl(response.data.secure_url);
-        //  })
+        console.log(response.data);
+        setUrl(response.data.secure_url)
+
+        createCategoryButton(e,response.data.secure_url);
       })
-     
-      .catch((error) => {console.log(error)});
+
+      .catch((error) => {
+        console.log(error);
+      });
   };
   //   }
 
@@ -45,13 +47,13 @@ export const CreateCategory = () => {
   //
 
   //===============================================================
-  const createCategoryButton = async (e) => {
+  const createCategoryButton = async (e,url) => {
     e.preventDefault();
-
+console.log(url);
     try {
       const category = {
         title,
-        image,
+        img:url
       };
       const result = await axios.post(
         "http://localhost:5000/categories",
@@ -65,8 +67,7 @@ export const CreateCategory = () => {
       if (result.data.success) {
         setStatus(true);
         setMessage("The category has been created successfully");
-       
-
+        navigate("/dashboard");
       }
     } catch (error) {
       if (!error.response.data.success) {
@@ -86,29 +87,33 @@ export const CreateCategory = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
           <br />
+          
           <div>
-            {/* <input
+            <input
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             ></input>
-            <button onClick={uploadImage}>Create New Category</button> */}
+            <button onClick={uploadImage}>Create New Category</button>
           </div>
           <br />
-          {/* <button>Create New Category</button> */}
+
+          {/* <img className="img" src={"url"} /> */}
         </form>
         <br />
         {status
           ? message && <div className="SuccessMessage">{message}</div>
           : message && <div className="ErrorMessage">{message}</div>}
 
-<input
+        {/* <input
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             ></input>
             <button onClick={uploadImage}>Create New Category</button>
 
-            <img 
+            <img className="img"
             src="https://res.cloudinary.com/dvg9eijgb/image/upload/v1652787187/jctpjlys42zsksjpqgoj.jpg"/>
+
+            <img className="img" src={"url"}/> */}
       </>
     </div>
   );

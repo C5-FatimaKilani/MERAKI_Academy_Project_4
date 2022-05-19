@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 // import useParams
-import { useParams } from "react-router-dom";
+import { useParams ,Link} from "react-router-dom";
 import "./GetProducts.css";
 import { methodContext } from "../../App";
 
@@ -76,7 +76,7 @@ export const Products = () => {
     setDescription(product.description);
     setPrice(product.price);
     if (updateBox) updateProduct(product._id);
-// }
+    // }
   };
   //===========================================
   const deleteProduct = async (delProdId) => {
@@ -121,6 +121,7 @@ export const Products = () => {
   //===========================================
   return (
     <>
+    <div className="allProducts">
       <br />
       {products.length &&
         products.map((product, index) => (
@@ -134,11 +135,11 @@ export const Products = () => {
               {product.comments ? (
                 product.comments.map((comment, i) => {
                   return (
-                    <div>
+                    <div className="deleteDiv">
                       <p className="comment" key={i}>
                         {comment.comment}
                       </p>
-                      <button className="deleteComment">X</button>
+                      <button className="deleteCommentButton">X</button>
                     </div>
                   );
                 })
@@ -186,23 +187,17 @@ export const Products = () => {
                 Add comment
               </button>
               {/* ==================================== */}
-              <button
-                className="delete"
-                onClick={() => deleteProduct(product._id)}
-              >
-                X
-              </button>
+             
               {/* ==================================== */}
               {
-            //   products.userId === userId 
-             (
+                //   products.userId === userId
                 <>
                   {
-                //   updateBox && productId === product._id && 
-                  (
-                    <form>
+                    //   updateBox && productId === product._id &&
+                    <form className="updateForm">
                       <br />
                       <input
+                        className="input"
                         type="text"
                         defaultValue={product.title}
                         placeholder="product title here"
@@ -211,30 +206,44 @@ export const Products = () => {
                       <br />
 
                       <textarea
+                        className="description"
                         placeholder="product description here"
                         defaultValue={product.description}
                         onChange={(e) => setDescription(e.target.value)}
                       ></textarea>
                       <br />
                       <input
+                        className="input"
                         type="text"
                         defaultValue={product.price}
-                        placeholder="product Price here"
+                        placeholder="product Price $$$"
                         onChange={(e) => setPrice(e.target.value)}
                       />
                       <br />
                     </form>
-                  )}
+                  }
                 </>
-              )}
-
+              }
+<div className="updateButtons" ></div>
+<div className="updateButtonDiv"></div>
               <button className="update" onClick={() => updateClick(product)}>
-                Update
+                Update Product
+              </button>
+              <button
+                className="update"
+                onClick={() => deleteProduct(product._id)}
+              >
+                Delete Product
               </button>
             </div>
           </div>
         ))}
       {message && <div>{message}</div>}
+
+      </div>
+      <Link className="link" to="/Createproduct">
+        Add Products 
+      </Link>
     </>
   );
 };

@@ -1,17 +1,20 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: bisque; */
+  
+}
+
 .App {
-    text-align: center;
-    max-width: 100vw;
-    min-height: 100vh;
-    max-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center};
 
-    .img{
+  background-color: rgb(116, 92, 92) !important;
+}
 
-        width: 50px
-    }
+.img {
+  width: 50px;
+}
 
-    .welcome{
-        color: #FFBB33;
-    }
+.welcome {
+  color: #ffbb33;
+}

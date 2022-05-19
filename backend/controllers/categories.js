@@ -2,9 +2,9 @@ const categoriesModel = require("../models/categories");
 
 //this function to create categories
 const createCategory = (req, res) => {
-  const { title } = req.body;
+  const { title,img } = req.body;
 
-  const newCategory = new categoriesModel({ title });
+  const newCategory = new categoriesModel({ title, img });
 
   newCategory
     .save()

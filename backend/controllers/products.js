@@ -4,7 +4,7 @@ const productsModel = require("../models/products");
 const createProduct = (req, res) => {
   const { title, description, price,categoryId ,img} = req.body;
 
-  console.log("A'm toooooken a'm heeere" + req.token);
+  // console.log("A'm toooooken a'm heeere" + req.token);
 
   const newProduct = new productsModel({
     title,
@@ -25,6 +25,7 @@ const createProduct = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({
         success: false,
         message: `Server Error`,

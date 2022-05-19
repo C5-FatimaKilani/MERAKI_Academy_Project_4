@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-
+import "./Dashboard.css";
 import { methodContext } from "../../App";
 
 //Dashboard component
@@ -16,6 +16,7 @@ export const Dashboard = () => {
   //================================================================================
   const getAllCategories = async () => {
     console.log(token);
+
     try {
       const result = await axios.get(`http://localhost:5000/categories`, {
         headers: {
@@ -27,6 +28,8 @@ export const Dashboard = () => {
         setCategories(result.data.categories);
         // setMessage("");
         // setShow(true);
+
+        // console.log(" dashboardهووون", result.data.categories);
         setUserId(result.data.userId);
       } else throw Error;
     } catch (error) {
@@ -56,25 +59,37 @@ export const Dashboard = () => {
   //================================================================================
   return (
     <>
-      <div>
+      <div className="dashboard">
         {categories.length &&
           categories.map((category) => {
             return (
               <div>
                 <div className="category">
-                  <h1 className="title">{category.title}</h1>
+                  {/* <h1 className="title">{category.title}</h1> */}
 
                   {/* http://localhost:5000/products/search_1?category=2 */}
-{/* "/category/:id"  */}
+                  {/* "/category/:id"  */}
 
-                  <Link to={`/category/${category._id}`}>{category.title} </Link>
-                  <Link to="/category.img">{category.img} </Link>
+                  <Link
+                    className="categoryTitle"
+                    to={`/category/${category._id}`}
+                  >
+                    {category.title}{" "}
+                  </Link>
+                  <Link
+                    
+                    to={`/category/${category._id}`}
+                  >
+                    <img className="categoryImage" src={`${category.img}`} />{" "}
+                  </Link>
                 </div>
+               
               </div>
             );
           })}
-        
-
+ <Link className="link" to="/CreateCategory">
+        Add New Category
+      </Link>
         {/* {message && <div>{message}</div>} */}
       </div>
     </>
