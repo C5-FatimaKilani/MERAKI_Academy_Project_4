@@ -3,7 +3,7 @@
  <img width=200px height=200px src="[https://i.imgur.com/6wj0hh6.jpg](https://nationaltoday.com/wp-content/uploads/2021/06/Shopping-Cart-Day-1-360x360.jpg)" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Sooq Com</h3>
 
 ---
 
