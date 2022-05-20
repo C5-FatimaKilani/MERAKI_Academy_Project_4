@@ -21,7 +21,9 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+The website was created by Fatima Kilani ,  and was originally a consumer to consumer auction site.
+
+On this website you can add categories and products to each category .. you can add products, delete, update what you created, and share your comments about the product with buyers and customers.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
