@@ -34,8 +34,9 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them.
 
 ```
-Give examples
-```
+1 --- You need to install the starter code from this link 
+
+2 --- you have to extract the what you installed in specified folder 
 
 ### Installing
 
