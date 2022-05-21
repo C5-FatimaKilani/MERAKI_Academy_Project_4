@@ -29,46 +29,38 @@ On this website you can add categories and products to each category .. you can 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+
 ### Prerequisites
 
 What things you need to install the software and how to install them.
 
-```
 1 --- You need to install the starter code from this link 
 
 2 --- you have to extract the what you installed in specified folder 
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+here is step by step series of examples that tell you how to get a development env running.
 
 in the main folder that contains 2 files BackEnd and FrontEnd write in terminal :
 
  you need to install those packages for frontend:
  
-![Screenshot_1](https://user-images.githubusercontent.com/100969229/169670576-0b721abd-11ea-42ff-8844-d07d0287bb90.jpg)
+ ![Screenshot_1](https://user-images.githubusercontent.com/100969229/169670576-0b721abd-11ea-42ff-8844-d07d0287bb90.jpg)
 
- 
- ![Screenshot_1](https://user-images.githubusercontent.com/100969229/169625982-96b9cee4-ed92-4338-9cbd-772bee386f4b.jpg)
+ ![Screenshot_2](https://user-images.githubusercontent.com/100969229/169670809-67d11cc9-4123-4580-b995-df4ee2bc6431.jpg)
 
+![Screenshot_3](https://user-images.githubusercontent.com/100969229/169670818-7440cddd-e92b-4fb0-adf7-de20735b0512.jpg)
 
-```
-Give the example
-```
+![Screenshot_4](https://user-images.githubusercontent.com/100969229/169670827-81118897-4d76-4199-bfb4-dac306a71606.jpg)
 
-And repeat
+![Screenshot_5](https://user-images.githubusercontent.com/100969229/169670830-cd137b41-4290-438e-b7dd-40c9ca5ccbf9.jpg)
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🎈 Usage <a name="usage"></a>
+![Screenshot_6](https://user-images.githubusercontent.com/100969229/169670837-1f2fe047-b207-4c8a-a9a8-6a5ec6b07a41.jpg)
 
 Add notes about how to use the system.
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Built Using 
 
 - [MongoDB](https://www.mongodb.com/) - Database
 - [Express JS](https://expressjs.com/) - Server Framework
