@@ -58,7 +58,9 @@ in the main folder that contains 2 files BackEnd and FrontEnd write in terminal 
 
 ![Screenshot_6](https://user-images.githubusercontent.com/100969229/169670837-1f2fe047-b207-4c8a-a9a8-6a5ec6b07a41.jpg)
 
-Some Notes about how you can use the system:
+
+**** Some Notes about how you can use the system:
+
 This system online market place thats mean you can add any product you want to buy it ,
 you can add comments to other products, search , add products to your wishlist .
 
