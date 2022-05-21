@@ -46,7 +46,7 @@ in the main folder that contains 2 files BackEnd and FrontEnd write in terminal 
 
  you need to install those packages for frontend:
  
- ![Screenshot_1](https://user-images.githubusercontent.com/100969229/169626019-7f831539-cdae-46ab-aa23-efd142312a27.jpg)
+ ![Screenshot_1](https://github.com/C5-FatimaKilani/MERAKI_Academy_Project_4/blob/main/Screenshot_1.jpg)
 
  
  ![Screenshot_1](https://user-images.githubusercontent.com/100969229/169625982-96b9cee4-ed92-4338-9cbd-772bee386f4b.jpg)
