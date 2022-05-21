@@ -42,7 +42,11 @@ What things you need to install the software and how to install them.
 
 A step by step series of examples that tell you how to get a development env running.
 
-![image](https://user-images.githubusercontent.com/100969229/169625424-3fabfcb2-cdfa-4b82-b568-17b413589158.png)
+in the main folder that contains 2 files BackEnd and FrontEnd write in terminal :
+
+ you need to install those packages for frontend:
+ 
+ ![Screenshot_1](https://user-images.githubusercontent.com/100969229/169625982-96b9cee4-ed92-4338-9cbd-772bee386f4b.jpg)
 
 
 ```
@@ -67,7 +71,6 @@ Add notes about how to use the system.
 - [Express JS](https://expressjs.com/) - Server Framework
 - [React JS](https://https://reactjs.org/) - Web Framework
 - [Node JS](https://nodejs.org/en/) - Server Environment
-- [cloudinary Package](https://medium.com/geekculture/how-to-upload-images-to-cloudinary-with-a-react-app-f0dcc357999c) - for react.js
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
